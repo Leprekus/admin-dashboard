@@ -4,8 +4,8 @@ import { ClerkProvider } from '@clerk/nextjs'
 const inter = Inter({ subsets: ['latin'] })
 
 
-import ModalProvider from '@/providers/ModalProvider'
 import './globals.css'
+import ModalProvider from '@/providers/ModalProvider'
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard',
