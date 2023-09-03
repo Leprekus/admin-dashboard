@@ -1,5 +1,5 @@
+import { isServerAuthed } from '@/lib/helpers'
 import prismadb from '@/lib/prismadb'
-import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 
 export const POST = async (
@@ -8,11 +8,9 @@ export const POST = async (
 ) => {
     try {
 
-        const { userId } = auth()
-
         const { value: { name } } = await req.json()
         
-        if(!userId) return new NextResponse('Unauthorized', { status: 401 })
+        const userId = isServerAuthed() 
 
         if(!name) return new NextResponse('Name is required', { status: 400 })
 
@@ -29,7 +27,7 @@ export const POST = async (
         return NextResponse.json(store)
 
     } catch (error) {
-        console.log(`[STORES_POST] ${error}`)
+        console.log(`[STORE_POST] ${error}`)
         return new NextResponse('Internal error', { status: 500 })
     }
 }

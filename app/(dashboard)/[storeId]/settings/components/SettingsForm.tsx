@@ -49,13 +49,12 @@ export default function SettingsForm({ store }: SettingsFormProps) {
             description='Manage store preferences'
         />
         <Button 
-            className='flex items-center justify-between gap-2'
+            size='icon'
             variant='destructive'
-            disabled={false}
-            onClick={() => {}}
+            disabled={isLoading}
+            onClick={() => setOpen(true)}
         >
             <Trash className='h-4 w-4'/>
-            Delete
         </Button>
     </div>
     <Separator/>
