@@ -3,6 +3,7 @@ import { useEffect, useState }  from 'react'
 
 
 import StoreModal from '@/components/modals/StoreModal'
+import ToastProvider from './ToastProvider'
 
 
 export default function ModalProvider() {
@@ -14,6 +15,7 @@ export default function ModalProvider() {
     if(!isMounted) return null
   return (
     <>
+      <ToastProvider/>
       <StoreModal/>
     </>
   )

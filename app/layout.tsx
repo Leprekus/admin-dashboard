@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 import './globals.css'
 import ModalProvider from '@/providers/ModalProvider'
+import ToastProvider from '@/providers/ToastProvider'
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard',
@@ -22,6 +23,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ModalProvider/>
+          <ToastProvider/>
           { children }
         </body>
       </html>

@@ -18,6 +18,7 @@ import {
   FormMessage 
 } from '@/components/ui/form'
 import { Fetch } from '@/lib/helpers'
+import toast from 'react-hot-toast'
 
 const FormSchema = z.object({
   name: z.string().min(1),
@@ -41,9 +42,22 @@ export default function StoreModal() {
 
     try {
       setIsLoading(true)
-      const res = await Fetch.post('/api/stores', values)
+
+      const createStore =  Fetch.post('/api/stores', values)
+     
+      
+      toast.promise(createStore, {
+        loading: 'Creating your store...',
+        success: 'Store Created!',
+        error: 'Failed to create store.'
+      })
+     
     } 
-    catch(error) { console.log(error) } 
+    catch(error) { 
+
+      console.error(error)
+      toast.error('Failed to create store.') 
+    } 
     finally { setIsLoading(false) }
     
   }
