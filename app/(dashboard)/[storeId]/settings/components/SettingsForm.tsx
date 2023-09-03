@@ -21,6 +21,8 @@ import toast from 'react-hot-toast';
 import { Fetch } from '@/lib/helpers';
 import { useParams, useRouter } from 'next/navigation';
 import AlertModal from '@/components/modals/AlertModal';
+import ApiAlert from '@/components/ui/api-alert';
+import useOrigin from '@/hooks/useOrigin';
 
 interface SettingsFormProps { store: Store }
 
@@ -34,6 +36,7 @@ export default function SettingsForm({ store }: SettingsFormProps) {
   
     const params = useParams()
     const router = useRouter()
+    const origin = useOrigin()
     const [open, setOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -132,6 +135,12 @@ export default function SettingsForm({ store }: SettingsFormProps) {
             </Button>
         </form>
     </Form>
+    <Separator/>
+    <ApiAlert 
+    title='NEXT_PUBLIC_API_URL' 
+    description={`${origin}/api/${params.storeId}`}
+    variant='public'
+    />
     </>
   )
 }
