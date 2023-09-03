@@ -13,6 +13,28 @@ export const Fetch = {
         const data = await res.json()
         
         return data
+    },
+    patch: async (endpoint: string, value: any) => {
+
+        const res = await fetch(endpoint, {
+            method: 'PATCH',
+            body: JSON.stringify({ value })
+        })
+        
+        const data = await res.json()
+        
+        return data
+    },
+    delete: async (endpoint: string) => {
+
+        const res = await fetch(endpoint, {
+            method: 'DELETE',
+            
+        })
+        
+        const data = await res.json()
+        
+        return data
     }
 }
 

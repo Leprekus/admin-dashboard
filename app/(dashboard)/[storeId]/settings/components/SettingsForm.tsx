@@ -17,6 +17,10 @@ import {
     FormMessage
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import toast from 'react-hot-toast';
+import { Fetch } from '@/lib/helpers';
+import { useParams, useRouter } from 'next/navigation';
+import AlertModal from '@/components/modals/AlertModal';
 
 interface SettingsFormProps { store: Store }
 
@@ -28,21 +32,57 @@ type SettingsFormValues = z.infer<typeof FormSchema>
 
 export default function SettingsForm({ store }: SettingsFormProps) {
   
+    const params = useParams()
+    const router = useRouter()
     const [open, setOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
     const form = useForm({
         resolver: zodResolver(FormSchema),
-        defaultValues: store
+        defaultValues: store,
+        
     })
 
     const onSubmit = async (data: SettingsFormValues) => {
-         
-        console.log(data)
+         try {
+            setIsLoading(true)
+            await Fetch.patch(`/api/stores/${params.storeId}`, data)
+            router.refresh()
+            toast.success('Changes saved')
+
+         } catch (error) {
+            toast.error('Something went wrong')
+            
+         } finally { setIsLoading(false) }
     }
 
+    const onDelete = async () => {
+        try {
+            setIsLoading(true)
+            const deleteStore = Fetch.delete(`/api/stores/${params.storeId}`)
+            await toast.promise(deleteStore, {
+                loading: 'Deleting store...',
+                success: 'Store Deleted!',
+                error: 'Failed to delete store. Remove all products and categories first.'
+              })
+            router.refresh()
+            router.push('/')
+            
+        } catch(error) {
+            console.error(error)
+        } finally { 
+            setIsLoading(false)
+            setOpen(false)
+        }
+    }
     return (
     <>
+    <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        isLoading={isLoading}
+    />
     <div className='flex items-center justify-between'>
         <Heading 
             title='Settings'
@@ -83,7 +123,10 @@ export default function SettingsForm({ store }: SettingsFormProps) {
                 />
             </div>
             <Button 
-                disabled={isLoading} 
+                disabled={ 
+                    form.getValues().name === store.name ||
+                    isLoading
+                } 
                 type='submit'>
                 Save Changes
             </Button>
