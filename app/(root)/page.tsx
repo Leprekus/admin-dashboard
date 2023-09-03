@@ -1,13 +1,18 @@
-import { Button } from '@/components/ui/button';
-import { SignInButton, SignOutButton, SignUpButton } from '@clerk/nextjs';
-import { mainModule } from 'process';
+'use client'
+import Modal from '@/components/ui/modal';
+import { UserButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
   <main>
-    <Button>log out</Button>
-    <SignOutButton>Sign Out</SignOutButton>
-    <SignInButton>Sign In</SignInButton>
+    <Modal
+    title='Titel'
+    description='Description' 
+    isOpen={true} 
+    onClose={() => {}}>
+
+    </Modal>
+    <UserButton afterSignOutUrl='/'/>
   </main>)
 
 }

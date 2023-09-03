@@ -1,3 +1,25 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": ["react", "react-hooks", "unused-imports"],
+  "rules": {
+
+    // Mark unused React imports as errors
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+
+    // Mark unused variables as errors
+    "no-unused-vars": "error",
+    
+
+    // Ensure you use React hooks correctly
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn", // You can customize the severity as needed
+
+    "unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{ "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+		]
+}
+
 }
