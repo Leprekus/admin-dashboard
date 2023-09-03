@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -17,6 +17,7 @@ import {
   FormLabel, 
   FormMessage 
 } from '@/components/ui/form'
+import { Fetch } from '@/lib/helpers'
 
 const FormSchema = z.object({
   name: z.string().min(1),
@@ -27,6 +28,8 @@ export default function StoreModal() {
   
   const storeModal = useStoreModal()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: { name: '' }
@@ -35,6 +38,13 @@ export default function StoreModal() {
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     //TODO: create store
     console.log('values: ', values);
+
+    try {
+      setIsLoading(true)
+      const res = await Fetch.post('/api/stores', values)
+    } 
+    catch(error) { console.log(error) } 
+    finally { setIsLoading(false) }
     
   }
   
@@ -55,15 +65,21 @@ export default function StoreModal() {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder='E-Commerce' { ...field }/>
+                    <Input 
+                      disabled={isLoading} 
+                      placeholder='E-Commerce' { ...field }/>
                   </FormControl>
                   <FormMessage/>
                 </FormItem>
               )}
               />
               <div className='pt-6 space-x-2 flex items-center justify-end w-full'>
-                <Button variant='outline' onClick={storeModal.Close}>Cancel</Button>
-                <Button type='submit'>Continue</Button>
+                <Button 
+                disabled={isLoading}
+                variant='outline' onClick={storeModal.Close}>Cancel</Button>
+                <Button 
+                disabled={isLoading}
+                type='submit'>Continue</Button>
               </div>
             </form>
           </Form>

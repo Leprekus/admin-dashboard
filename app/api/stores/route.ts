@@ -10,8 +10,8 @@ export const POST = async (
 
         const { userId } = auth()
 
-        const { name } = await req.json()
-
+        const { value: { name } } = await req.json()
+        
         if(!userId) return new NextResponse('Unauthorized', { status: 401 })
 
         if(!name) return new NextResponse('Name is required', { status: 400 })
