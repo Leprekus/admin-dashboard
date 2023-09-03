@@ -1,3 +1,6 @@
+import { auth } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+
 export const Fetch = {
     post: async (endpoint: string, value: any) => {
 
@@ -10,4 +13,14 @@ export const Fetch = {
         
         return data
     }
+}
+
+export const isAuthed = () => {
+
+    const { userId } = auth()
+    
+    if(!userId) return redirect('/sign-in')
+
+    return userId
+    
 }

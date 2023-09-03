@@ -1,8 +1,8 @@
-import { auth } from '@clerk/nextjs'
 import { type ReactNode } from 'react'
 import { redirect } from 'next/navigation'
 import prismadb from '@/lib/prismadb'
 import Navbar from '@/components/Navbar'
+import { isAuthed } from '@/lib/helpers'
 export default async function DashboardLayout({
   children,
   params,
@@ -11,9 +11,7 @@ export default async function DashboardLayout({
   params: { storeId: string }
 }) {
 
-  const { userId } = auth()
-
-  if(!userId) return redirect('/sign-in')
+  const userId = isAuthed()
 
   const store = await prismadb.store.findFirst({
     where: {

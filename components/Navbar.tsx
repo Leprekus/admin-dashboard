@@ -1,14 +1,12 @@
-import { UserButton, auth } from '@clerk/nextjs';
+import { UserButton } from '@clerk/nextjs';
 import MainNav from './MainNav';
 import StoreSwitcher from './StoreSwitcher';
 import prismadb from '@/lib/prismadb';
-import { redirect } from 'next/navigation';
+import { isAuthed } from '@/lib/helpers';
 
 export default async function Navbar() {
 
-  const { userId } = auth()
-
-  if(!userId) return redirect('/sign-in')
+  const userId = isAuthed()
 
   const stores = await prismadb.store.findMany({
     where: {
