@@ -45,12 +45,16 @@ export default function StoreModal() {
 
       const createStore =  Fetch.post('/api/stores', values)
      
-      
       toast.promise(createStore, {
         loading: 'Creating your store...',
         success: 'Store Created!',
         error: 'Failed to create store.'
       })
+
+      const store = await createStore
+  
+      window.location.assign(`/${store.id}`)
+      
      
     } 
     catch(error) { 
