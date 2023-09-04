@@ -8,7 +8,7 @@
     "react/jsx-uses-vars": "error",
 
     // Mark unused variables as errors
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
     
 
     // Ensure you use React hooks correctly
