@@ -1,5 +1,5 @@
-import { deleteBillboard, getBillboard, updateBillboard } from '@/app/api/actions/billboardActions';
-import { getStoreByUserId } from '@/app/api/actions/storeActions';
+import { deleteBillboard, getBillboard, updateBillboard } from '@/app/api/actions/billboard-actions';
+import { getStoreByUserId } from '@/app/api/actions/store-actions';
 import { isServerAuthed } from '@/lib/helpers';
 import { NextResponse } from 'next/server';
 
