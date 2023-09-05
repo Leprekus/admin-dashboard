@@ -17,6 +17,14 @@ export const getManyBillboards = async (storeId: string) => {
 
     return billboards
 }
+export const getBillboard = async (id: string) => {
+    const billboard = await prismadb.billboard.findUnique({
+        where: { id },
+    
+    })
+
+    return billboard
+}
 
 export const createBillboard = async (
     payload: {
@@ -26,6 +34,15 @@ export const createBillboard = async (
 }) => {
     const billboard = await prismadb.billboard.create({
         data: { ...payload }
+    })
+
+    return billboard
+}
+
+export const deleteBillboard = async (id: string) => {
+
+    const billboard = await prismadb.billboard.delete({
+        where: { id }
     })
 
     return billboard

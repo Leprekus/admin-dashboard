@@ -1,7 +1,28 @@
-import { updateBillboard } from '@/app/api/actions/billboardActions';
-import { deleteStore, getStoreByUserId } from '@/app/api/actions/storeActions';
+import { deleteBillboard, getBillboard, updateBillboard } from '@/app/api/actions/billboardActions';
+import { getStoreByUserId } from '@/app/api/actions/storeActions';
 import { isServerAuthed } from '@/lib/helpers';
 import { NextResponse } from 'next/server';
+
+export const GET = async (
+    _req: Request,
+    { params }: { params: { billboardId: string } }
+) => {
+
+    try {
+
+        if(!params.billboardId) return new NextResponse('Billboard id is Required', { status: 400 })
+
+        const billboard = await getBillboard(params.billboardId)
+
+        return NextResponse.json(billboard)
+
+    } catch (error) {
+
+        console.log(`[STORE_GET] ${error}`);
+
+        return new NextResponse('Internal error ', { status: 500 })
+    }
+}
 
 export const PATCH = async (
     req: Request,
@@ -47,8 +68,14 @@ export const DELETE = async (
 
         if(!params.storeId || !params.billboardId) return new NextResponse('Store id is Required', { status: 400 })
 
-        const store = await deleteStore(params.storeId, userId)
+        //check that store belongs to user
+        const storeByUserId = await getStoreByUserId(params.storeId, userId)
 
+        if(!storeByUserId)
+            return new NextResponse('Unauthorized', { status: 403 })
+
+        const store = await deleteBillboard(params.storeId)
+        
         return NextResponse.json(store)
 
     } catch (error) {
