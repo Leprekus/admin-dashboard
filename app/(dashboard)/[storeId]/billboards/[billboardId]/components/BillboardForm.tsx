@@ -21,8 +21,6 @@ import toast from 'react-hot-toast';
 import { Fetch } from '@/lib/helpers';
 import { useParams, useRouter } from 'next/navigation';
 import AlertModal from '@/components/modals/AlertModal';
-import ApiAlert from '@/components/ui/api-alert';
-import useOrigin from '@/hooks/useOrigin';
 import ImageUpload from '@/components/ui/ImageUpload';
 
 interface BillboardFormProps { initialData: Billboard | null }
@@ -38,7 +36,6 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
   
     const params = useParams()
     const router = useRouter()
-    const origin = useOrigin()
     const [open, setOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -62,6 +59,7 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
             else await Fetch.post(`/api/${params.storeId}/billboards`, data)
             
             router.refresh()
+            router.push(`/${params.storeId}/billboards`)
             toast.success(toastMessage)
 
          } catch (error) {
@@ -168,11 +166,6 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
         </form>
     </Form>
     <Separator/>
-    <ApiAlert 
-    title='NEXT_PUBLIC_API_URL' 
-    description={`${origin}/api/${params.storeId}`}
-    variant='public'
-    />
     </>
   )
 }
