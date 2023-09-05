@@ -6,11 +6,28 @@ export const updateBillboard = async (id: string, payload: Partial<Billboard>) =
         where: { id },
         data: { ...payload }
     })
+
+    return billboard
 }
-export const getManyBillboards = async (id: string) => {
-    const billboard = await prismadb.billboard.findMany({
-        where: { id },
+export const getManyBillboards = async (storeId: string) => {
+    const billboards = await prismadb.billboard.findMany({
+        where: { storeId },
     
     })
+
+    return billboards
+}
+
+export const createBillboard = async (
+    payload: {
+        label: string;
+        imageUrl: string;
+        storeId: string;
+}) => {
+    const billboard = await prismadb.billboard.create({
+        data: { ...payload }
+    })
+
+    return billboard
 }
 

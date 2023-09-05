@@ -1,6 +1,7 @@
 import { isServerAuthed } from '@/lib/helpers'
-import prismadb from '@/lib/prismadb'
 import { NextResponse } from 'next/server'
+import { getStoreByUserId } from '../../actions/storeActions'
+import { createBillboard, getManyBillboards } from '../../actions/billboardActions'
 
 export const POST = async (
     req: Request,
@@ -16,24 +17,18 @@ export const POST = async (
         if(!label || !imageUrl || !params.storeId) 
             return new NextResponse('Label, Image URL, and Store id are required', { status: 400 })
         
-        const storeByUserId = await prismadb.store.findFirst({
-            where: {
-                id: params.storeId,
-                userId
-            }
-        })
+        const storeByUserId = await getStoreByUserId(params.storeId, userId)
 
         if(!storeByUserId) return new NextResponse('Unauthorized', { status: 403 })
 
-            const billboard = await prismadb.billboard.create({
-            data: {
-                label,
-                imageUrl,
-                storeId: params.storeId
-            }
+        const billboard = await createBillboard({
+            label,
+            imageUrl,
+            storeId: params.storeId,
+            
         })
 
-        return NextResponse.json(params.storeId)
+        return NextResponse.json(billboard)
 
     } catch (error) {
         console.log(`[BILLBOARDS_POST] ${error}`)
@@ -52,15 +47,10 @@ export const GET = async (
 
         if(!params.storeId) 
             return new NextResponse('Store id is required', { status: 400 })
-        
 
-
-            const billboard = await prismadb.billboard.findMany({
-            where: { storeId: params.storeId }
-        
-        })
-
-        return NextResponse.json(params.storeId)
+        const billboards = await getManyBillboards(params.storeId)
+            
+        return NextResponse.json(billboards)
 
     } catch (error) {
         console.log(`[BILLBOARDS_GET] ${error}`)
