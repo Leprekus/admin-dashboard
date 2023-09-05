@@ -57,9 +57,9 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
          try {
             setIsLoading(true)
             if(initialData)
-                await Fetch.patch(`/api}/${params.storeId}/billboards/${params.billboardId}`, data)
+                await Fetch.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data)
             
-            else await Fetch.post(`/api}/${params.storeId}/billboards`, data)
+            else await Fetch.post(`/api/${params.storeId}/billboards`, data)
             
             router.refresh()
             toast.success(toastMessage)
