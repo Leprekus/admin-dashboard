@@ -1,3 +1,5 @@
+import { updateBillboard } from '@/app/api/actions/billboardActions';
+import { getStoreByUserId } from '@/app/api/actions/storeActions';
 import { isServerAuthed } from '@/lib/helpers';
 import prismadb from '@/lib/prismadb';
 import { NextResponse } from 'next/server';
@@ -15,20 +17,15 @@ export const PATCH = async (
 
         if(!label || !imageUrl || !params.billboardId) return new NextResponse('Label, Image URL, and Billboard id are Required', { status: 400 })
 
-        const storeByUserId = await prismadb.store.findFirst({
-            where: {
-                id: params.storeId,
-                userId
-            }
-        })
+        const storeByUserId = await getStoreByUserId(params.storeId, userId)
 
         if(!storeByUserId) return new NextResponse('Unauthorized', { status: 403 })
 
-        const billboard = await prismadb.billboard.updateMany({
-            where: { id: params.billboardId },
-            data: { label, imageUrl }
- 
-        })
+        const billboard = 
+        await updateBillboard(
+            params.billboardId,
+            { label, imageUrl }
+            )
 
         return NextResponse.json(billboard)
         
