@@ -66,6 +66,7 @@ export default function ImageUpload({
                     disabled={disabled} 
                     variant='secondary'>
                         <ImagePlus className='h-4 w-4 mr-2'/>
+                        Upload image
                     </Button>
                 )
                 }

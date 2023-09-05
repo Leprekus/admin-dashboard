@@ -23,6 +23,7 @@ import { useParams, useRouter } from 'next/navigation';
 import AlertModal from '@/components/modals/AlertModal';
 import ApiAlert from '@/components/ui/api-alert';
 import useOrigin from '@/hooks/useOrigin';
+import ImageUpload from '@/components/ui/ImageUpload';
 
 interface BillboardFormProps { initialData: Billboard | null }
 
@@ -55,7 +56,11 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
     const onSubmit = async (data: BillboardFormValues) => {
          try {
             setIsLoading(true)
-            await Fetch.patch(`/api/stores/${params.storeId}`, data)
+            if(initialData)
+                await Fetch.patch(`/api}/${params.storeId}/billboards/${params.billboardId}`, data)
+            
+            else await Fetch.post(`/api}/${params.storeId}/billboards`, data)
+            
             router.refresh()
             toast.success(toastMessage)
 
@@ -68,11 +73,13 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
     const onDelete = async () => {
         try {
             setIsLoading(true)
-            const deleteStore = Fetch.delete(`/api/stores/${params.storeId}`)
+            
+            const deleteStore = Fetch.delete(`/api/${params.storeId}/billboards/${params.bilboardId}`)
+           
             await toast.promise(deleteStore, {
-                loading: 'Deleting store...',
-                success: 'Store Deleted!',
-                error: 'Failed to delete store. Remove all products and categories first.'
+                loading: 'Deleting billboard...',
+                success: 'Billboard Deleted!',
+                error: 'Failed to delete billboard. Remove all categories using this billboard.'
               })
             router.refresh()
             router.push('/')
@@ -113,6 +120,24 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
             onSubmit={form.handleSubmit(onSubmit)}
             className='space-y-8 w-full'
         >
+            <FormField
+                    control={form.control}
+                    name='imageUrl'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Background Image</FormLabel>
+                            <FormControl>
+                                <ImageUpload
+                                    value={field.value ? [field.value] : []}
+                                    disabled={isLoading}
+                                    onChange={(url) => field.onChange(url)}
+                                    onRemove={() => field.onChange('')}
+                                />
+                            </FormControl>
+                            <FormMessage/>
+                        </FormItem>
+                    )}
+             />
             <div className='grid grid-cols-3 gap-8'>
                 <FormField
                     control={form.control}
