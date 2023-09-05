@@ -1,7 +1,6 @@
 import { updateBillboard } from '@/app/api/actions/billboardActions';
-import { getStoreByUserId } from '@/app/api/actions/storeActions';
+import { deleteStore, getStoreByUserId } from '@/app/api/actions/storeActions';
 import { isServerAuthed } from '@/lib/helpers';
-import prismadb from '@/lib/prismadb';
 import { NextResponse } from 'next/server';
 
 export const PATCH = async (
@@ -48,9 +47,7 @@ export const DELETE = async (
 
         if(!params.storeId || !params.billboardId) return new NextResponse('Store id is Required', { status: 400 })
 
-        const store = await prismadb.store.deleteMany({
-            where: { id: params.storeId, userId },
-        })
+        const store = await deleteStore(params.storeId, userId)
 
         return NextResponse.json(store)
 

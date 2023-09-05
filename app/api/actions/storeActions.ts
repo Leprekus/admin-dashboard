@@ -7,3 +7,11 @@ export const getStoreByUserId = async (id: string, userId: string) => {
 
     return store
 }
+
+export const deleteStore = async (id: string, userId: string) => {
+    const store = await prismadb.store.deleteMany({
+        where: { id, userId }
+    })
+    
+    return store
+}
