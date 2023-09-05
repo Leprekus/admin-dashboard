@@ -1,9 +1,9 @@
 'use client'
-import { ClipboardCheck, Copy, Server } from 'lucide-react';
+import { Copy, Server } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from './alert';
 import { Badge, BadgeProps } from './badge';
 import { Button } from './button';
-import toast from 'react-hot-toast';
+import { onCopy } from '@/lib/utils';
 
 interface ApiAlertProps {
     title: string;
@@ -25,10 +25,7 @@ export default function ApiAlert({
     variant = 'public',
 }: ApiAlertProps) {
 
-    const onCopy = () => {
-        navigator.clipboard.writeText(description)
-        toast('API Route copied to clipboard.', { icon: <ClipboardCheck/> })
-    }
+
   return (
     <Alert>
         <Server className='h-4 w-4'/>
@@ -53,7 +50,7 @@ export default function ApiAlert({
                     >
                         { description }
             </code>
-            <Button variant='outline' onClick={onCopy}>
+            <Button variant='outline' onClick={() => onCopy(description)}>
                 <Copy className='h-4 w-4'/>
             </Button>
         </AlertDescription>
