@@ -12,3 +12,8 @@ export const onCopy = (text: string) => {
   toast('Copied', { icon: <ClipboardCheck/>, position: 'bottom-right',  })
 }
 
+export const priceFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD'
+})
+
