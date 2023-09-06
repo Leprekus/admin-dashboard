@@ -1,4 +1,5 @@
 import prismadb from '@/lib/prismadb'
+import { Category } from '@prisma/client'
 
 export const getManyCategories = async (storeId: string) =>  {
 
@@ -27,6 +28,25 @@ export const createCategory = async (
 }) => {
     const category = await prismadb.category.create({
         data: { ...payload }
+    })
+
+    return category
+}
+export const updateCategory = async (
+    id: string, 
+    payload: Partial<Category>
+) => {
+    const category = await prismadb.category.updateMany({
+        where: { id },
+        data: { ...payload }
+    })
+
+    return category
+}
+
+export const deleteCategory = async (id: string) => {
+    const category = await prismadb.category.delete({
+        where: { id },
     })
 
     return category

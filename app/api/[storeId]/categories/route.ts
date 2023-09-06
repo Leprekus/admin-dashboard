@@ -49,7 +49,7 @@ export const GET = async (
             return new NextResponse('Store id is required', { status: 400 })
 
         const categories = await getManyCategories(params.storeId)
-            
+        console.log({ categories })
         return NextResponse.json(categories)
 
     } catch (error) {

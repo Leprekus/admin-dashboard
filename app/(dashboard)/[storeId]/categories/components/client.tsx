@@ -36,7 +36,7 @@ export default function CategoryClient({ data }: CategoryClientProps) {
           description='Api calls for Categories'
         />
         <ApiList 
-          entityName='Categories' 
+          entityName='categories' 
           entityIdName='categoryId'
         />
     </>

@@ -28,20 +28,20 @@ export default function CellAction({ data }: CellActionProps) {
 
     const [isLoading, setIsLoading] = useState(false)
     const [open, setOpen] = useState(false)
-    console.log(params.billboardId)
+
     const onDelete = async () => {
         try {
             setIsLoading(true)
             
-            const deleteStore = Fetch.delete(`/api/${params.storeId}/billboards/${data.id}`)
+            const deleteStore = Fetch.delete(`/api/${params.storeId}/categories/${data.id}`)
            
             await toast.promise(deleteStore, {
-                loading: 'Deleting billboard...',
-                success: 'Billboard Deleted!',
-                error: 'Failed to delete billboard. Remove all categories using this billboard.'
+                loading: 'Deleting category...',
+                success: 'Category Deleted!',
+                error: 'Failed to delete category. Remove all products using this category.'
               })
             router.refresh()
-            router.push(`/${params.storeId}/billboards`)
+            router.push(`/${params.storeId}/categories`)
             
         } catch(error) {
             console.error(error)
@@ -73,7 +73,7 @@ export default function CellAction({ data }: CellActionProps) {
                 <Copy className='mr-2 h-4'/>
                 Copy Id
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/billboards/${data.id}`)}>
+            <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/categories/${data.id}`)}>
                 <Edit className='mr-2 h-4'/>
                 Edit
             </DropdownMenuItem>
