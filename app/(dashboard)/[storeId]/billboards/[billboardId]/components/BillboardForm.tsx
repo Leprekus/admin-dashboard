@@ -72,7 +72,7 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
         try {
             setIsLoading(true)
             
-            const deleteStore = Fetch.delete(`/api/${params.storeId}/billboards/${params.bilboardId}`)
+            const deleteStore = Fetch.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
            
             await toast.promise(deleteStore, {
                 loading: 'Deleting billboard...',

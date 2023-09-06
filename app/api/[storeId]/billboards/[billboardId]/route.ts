@@ -70,17 +70,17 @@ export const DELETE = async (
 
         //check that store belongs to user
         const storeByUserId = await getStoreByUserId(params.storeId, userId)
-
+console.log('1')
         if(!storeByUserId)
             return new NextResponse('Unauthorized', { status: 403 })
 
-        const store = await deleteBillboard(params.storeId)
+        const billboard = await deleteBillboard(params.billboardId)
         
-        return NextResponse.json(store)
+        return NextResponse.json(billboard)
 
     } catch (error) {
 
-        console.log(`[STORE_DELETE] ${error}`);
+        console.log(`[BILLBOARD_DELETE] ${error}`);
 
         return new NextResponse('Internal error ', { status: 500 })
     }

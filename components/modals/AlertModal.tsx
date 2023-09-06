@@ -50,7 +50,7 @@ export default function AlertModal({
                 variant='destructive'
                 onClick={onConfirm}
             >
-                Delete store
+                Delete
             </Button>
         </div>
     </Modal>

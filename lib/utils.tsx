@@ -11,3 +11,4 @@ export const onCopy = (text: string) => {
   navigator.clipboard.writeText(text)
   toast('Copied', { icon: <ClipboardCheck/>, position: 'bottom-right',  })
 }
+

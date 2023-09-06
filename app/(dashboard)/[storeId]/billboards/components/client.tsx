@@ -16,7 +16,6 @@ export default function BillboardClient({ data }: BillboardClientProps) {
   const router = useRouter()
   const params = useParams()
 
-  console.log(data)
   return (
     <>
         <div className='flex items-center justify-between'>
