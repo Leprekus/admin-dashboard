@@ -41,7 +41,7 @@ export default function CellAction({ data }: CellActionProps) {
                 error: 'Failed to delete billboard. Remove all categories using this billboard.'
               })
             router.refresh()
-            router.push('/')
+            router.push(`/${params.storeId}/billboards`)
             
         } catch(error) {
             console.error(error)
