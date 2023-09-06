@@ -1,6 +1,6 @@
 'use client'
 
-import { BillboardColumn } from './column'
+import { CategoryColumn } from './column'
 import { Button } from '@/components/ui/button'
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import { 
@@ -18,7 +18,7 @@ import { Fetch } from '@/lib/helpers'
 import AlertModal from '@/components/modals/AlertModal'
 
 interface CellActionProps {
-    data: BillboardColumn
+    data: CategoryColumn
 }
 
 export default function CellAction({ data }: CellActionProps) {
