@@ -72,9 +72,9 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
         try {
             setIsLoading(true)
             
-            const deleteStore = Fetch.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
+            const deleteBillboard = Fetch.delete(`/api/${params.storeId}/billboards/${params.billboardId}`)
            
-            await toast.promise(deleteStore, {
+            await toast.promise(deleteBillboard, {
                 loading: 'Deleting billboard...',
                 success: 'Billboard Deleted!',
                 error: 'Failed to delete billboard. Remove all categories using this billboard.'

@@ -10,3 +10,11 @@ export const getManyCategories = async (storeId: string) =>  {
     
     return categories
 }
+export const getCategory = async (id: string) =>  {
+
+    const categories = await prismadb.category.findUnique({
+        where: { id },
+    })
+
+    return categories
+}
