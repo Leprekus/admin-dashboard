@@ -18,3 +18,16 @@ export const getCategory = async (id: string) =>  {
 
     return categories
 }
+
+export const createCategory = async (
+    payload: {
+        name: string;
+        billboardId: string;
+        storeId: string
+}) => {
+    const category = await prismadb.category.create({
+        data: { ...payload }
+    })
+
+    return category
+}

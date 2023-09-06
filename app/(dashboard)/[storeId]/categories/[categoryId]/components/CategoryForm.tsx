@@ -86,7 +86,7 @@ export default function CategoryForm({ initialData, billboards }: CategoryFormPr
             await toast.promise(deleteCategory, {
                 loading: 'Deleting category...',
                 success: 'Category Deleted!',
-                error: 'Failed to delete category. Remove all categories using this category.'
+                error: 'Failed to delete category. Remove all active products in this category.'
               })
             router.refresh()
             router.push('/')
