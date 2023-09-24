@@ -12,7 +12,7 @@ export const GET = async (
 
         if(!params.categoryId) return new NextResponse('Category id is Required', { status: 400 })
 
-        const category = await getCategory(params.categoryId)
+        const category = await getCategory(params.categoryId, { billboard: true })
 
         return NextResponse.json(category)
 

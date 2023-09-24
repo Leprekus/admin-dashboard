@@ -83,7 +83,6 @@ export const GET = async (
         
         if(!params.storeId) 
             return new NextResponse('Store id is required', { status: 400 })
-
         const products = await prismadb.product.findMany({
             where: {
                 storeId: params.storeId,
@@ -100,7 +99,7 @@ export const GET = async (
             },
             orderBy:{ createdAt: 'desc' }
         })
-            
+        console.log({ products, categoryId, colorId, sizeId, isFeatured, url: req.url })
         return NextResponse.json(products)
 
     } catch (error) {

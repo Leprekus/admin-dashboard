@@ -80,23 +80,23 @@ model Color {
 }
 
 model Product {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   storeId    String
-  store      Store    @relation("StoreToProduct", fields: [storeId], references: [id])
+  store      Store       @relation("StoreToProduct", fields: [storeId], references: [id])
   categoryId String
-  category   Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  category   Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
   price      Decimal
   name       String
-  isFeatured Boolean  @default(false)
-  isArchived Boolean  @default(false)
+  isFeatured Boolean     @default(false)
+  isArchived Boolean     @default(false)
   sizeId     String
-  size       Size     @relation(fields: [sizeId], references: [id])
+  size       Size        @relation(fields: [sizeId], references: [id])
   colorId    String
-  color      Color    @relation(fields: [colorId], references: [id])
+  color      Color       @relation(fields: [colorId], references: [id])
   images     Image[]
-  orderItem OrderItem[]
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  orderItem  OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
 
   @@index([storeId])
   @@index([categoryId])
@@ -117,15 +117,14 @@ model Image {
 
 //many to many relation
 model OrderItem {
-  id         String      @id @default(uuid())
-  orderId String
-  order Order @relation(fields: [orderId], references: [id])
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
   productId String
-  product Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 
   @@index([orderId])
   @@index([productId])
-
 }
 
 model Order {

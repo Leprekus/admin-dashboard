@@ -1,5 +1,6 @@
 import prismadb from '@/lib/prismadb'
-import { Category } from '@prisma/client'
+import { Category, Prisma } from '@prisma/client'
+import { DefaultArgs } from '@prisma/client/runtime/library'
 
 export const getManyCategories = async (storeId: string) =>  {
 
@@ -11,10 +12,11 @@ export const getManyCategories = async (storeId: string) =>  {
     
     return categories
 }
-export const getCategory = async (id: string) =>  {
+export const getCategory = async (id: string, include?: Prisma.CategoryInclude<DefaultArgs>) =>  {
 
     const categories = await prismadb.category.findUnique({
         where: { id },
+        include
     })
 
     return categories
