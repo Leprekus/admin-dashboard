@@ -1,5 +1,5 @@
-import { deleteProduct } from '@/app/actions/product-actions';
-import { getStoreByUserId } from '@/app/actions/store-actions';
+import { deleteProduct } from '@/app/actions/api/product-actions';
+import { getStoreByUserId } from '@/app/actions/api/store-actions';
 import { isServerAuthed } from '@/lib/helpers';
 import prismadb from '@/lib/prismadb';
 import { NextResponse } from 'next/server';
