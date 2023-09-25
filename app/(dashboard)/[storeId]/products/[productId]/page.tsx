@@ -1,8 +1,9 @@
-import { getManyCategories } from '@/app/actions/categories-actions';
-import { getManyColors } from '@/app/actions/color-actions';
-import { getProduct } from '@/app/actions/product-actions';
-import { getManySizes } from '@/app/actions/sizes-actions';
+
+import { getProduct } from '@/app/actions/api/product-actions';
 import ProductForm from './components/ProductForm';
+import { getManyCategories } from '@/app/actions/api/categories-actions';
+import { getManyColors } from '@/app/actions/api/color-actions';
+import { getManySizes } from '@/app/actions/api/sizes-actions';
 
 export default async function ProductFormPage({
     params,
