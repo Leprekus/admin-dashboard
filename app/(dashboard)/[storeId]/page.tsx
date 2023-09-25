@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { priceFormatter } from '@/lib/utils'
 import { CreditCardIcon, DollarSign, PackageIcon } from 'lucide-react'
-import React from 'react'
 
 interface DashboardPageProps { 
   params: { storeId: string }

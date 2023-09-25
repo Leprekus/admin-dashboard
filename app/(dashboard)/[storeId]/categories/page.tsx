@@ -1,4 +1,4 @@
-import { getManyCategories } from '@/app/actions/categories-actions';
+import { getManyCategories } from '@/app/actions/api/categories-actions';
 import { format } from 'date-fns';
 import BillboardClient from './components/client';
 import { CategoryColumn } from './components/column';
