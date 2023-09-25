@@ -1,3 +1,8 @@
+import { getGraphRevenue } from '@/app/actions/get-graph-revenue'
+import { getSalesCount } from '@/app/actions/get-sales-count'
+import { getStockCount } from '@/app/actions/get-stock-count'
+import { getTotalRevenue } from '@/app/actions/get-total-revenue'
+import Overview from '@/components/Overview'
 import Heading from '@/components/ui/Heading'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
@@ -5,12 +10,15 @@ import { priceFormatter } from '@/lib/utils'
 import { CreditCardIcon, DollarSign, PackageIcon } from 'lucide-react'
 import React from 'react'
 
-interface DashboardPageProps {}
-export default function DashboardPage({}: DashboardPageProps) {
+interface DashboardPageProps { 
+  params: { storeId: string }
+}
+export default async function DashboardPage({ params }: DashboardPageProps) {
 
-  const totalRevenue = await getTotalRevenue
-  const salesCount = () => {}
-  const stockCount = () => {}
+  const totalRevenue = await getTotalRevenue(params.storeId)
+  const salesCount = await getSalesCount(params.storeId)
+  const stockCount = await getStockCount(params.storeId)
+  const graphRevenue = await getGraphRevenue(params.storeId)
   return (
     <div className='flex-col'>
       <div className='flex-1 space-y-4 p-8 pt-6'>
@@ -29,7 +37,7 @@ export default function DashboardPage({}: DashboardPageProps) {
               </CardHeader>
               <CardContent>
                 <div className='text-2xl font-bold'>
-                  {priceFormatter.format(0)}
+                  { priceFormatter.format(totalRevenue) }
                 </div>
               </CardContent>
             </Card>
@@ -43,7 +51,7 @@ export default function DashboardPage({}: DashboardPageProps) {
               </CardHeader>
               <CardContent>
                 <div className='text-2xl font-bold'>
-                  00.00
+                  + { salesCount }
                 </div>
               </CardContent>
             </Card>
@@ -58,11 +66,21 @@ export default function DashboardPage({}: DashboardPageProps) {
               </CardHeader>
               <CardContent>
                 <div className='text-2xl font-bold'>
-                  1
+                  { stockCount }
                 </div>
               </CardContent>
             </Card>
           </div>
+          <Card className='col-span-4'>
+            <CardHeader>
+              <CardTitle>
+                Overview
+              </CardTitle>
+            </CardHeader>
+            <CardContent className='pl-2'>
+              <Overview data={graphRevenue}/>
+            </CardContent>
+          </Card>
       </div>
     </div>
   )
