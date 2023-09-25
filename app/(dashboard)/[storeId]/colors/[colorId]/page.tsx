@@ -1,4 +1,4 @@
-import { getColor } from '@/app/actions/color-actions'
+import { getColor } from '@/app/actions/api/color-actions'
 import ColorForm from './components/ColorForm'
 
 export default async function ColorFormPage({
