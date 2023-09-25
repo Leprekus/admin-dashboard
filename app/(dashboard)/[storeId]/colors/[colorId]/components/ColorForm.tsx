@@ -161,7 +161,7 @@ export default function ColorForm({ initialData }: ColorFormProps) {
                 <FormField
                     control={form.control}
                     name='value'
-                    render={({ field }) => (
+                    render={() => (
                         <FormItem>
                             <FormLabel>Color</FormLabel>
                             <FormControl>
