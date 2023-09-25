@@ -1,8 +1,8 @@
 import { isServerAuthed } from '@/lib/helpers'
-import { NextResponse } from 'next/server'
-import { getStoreByUserId } from '../../actions/store-actions'
-import { createProduct } from '../../actions/product-actions'
 import prismadb from '@/lib/prismadb'
+import { NextResponse } from 'next/server'
+import { createProduct } from '../../../actions/product-actions'
+import { getStoreByUserId } from '../../../actions/store-actions'
 
 export const POST = async (
     req: Request,

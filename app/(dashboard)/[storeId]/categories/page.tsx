@@ -1,7 +1,7 @@
+import { getManyCategories } from '@/app/actions/categories-actions';
+import { format } from 'date-fns';
 import BillboardClient from './components/client';
 import { CategoryColumn } from './components/column';
-import { format } from 'date-fns'
-import { getManyCategories } from '@/app/api/actions/categories-actions';
 export default async function CategoriesPage({ 
   params 
 }: {

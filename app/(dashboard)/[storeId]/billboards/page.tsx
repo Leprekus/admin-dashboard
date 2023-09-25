@@ -1,7 +1,7 @@
-import { getManyBillboards } from '@/app/api/actions/billboard-actions';
+import { getManyBillboards } from '@/app/actions/api/billboard-actions';
+import { format } from 'date-fns';
 import BillboardClient from './components/client';
 import { BillboardColumn } from './components/column';
-import { format } from 'date-fns'
 export default async function BillboardsPage({ 
   params 
 }: {

@@ -1,5 +1,5 @@
-import { deleteSize, getSize, updateSize } from '@/app/api/actions/sizes-actions';
-import { getStoreByUserId } from '@/app/api/actions/store-actions';
+import { deleteSize, getSize, updateSize } from '@/app/actions/sizes-actions';
+import { getStoreByUserId } from '@/app/actions/store-actions';
 import { isServerAuthed } from '@/lib/helpers';
 import { NextResponse } from 'next/server';
 

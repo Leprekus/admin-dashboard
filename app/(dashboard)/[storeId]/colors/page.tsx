@@ -1,8 +1,8 @@
 
-import { getManyColors } from '@/app/api/actions/color-actions'
+import { getManyColors } from '@/app/actions/color-actions'
 import { format } from 'date-fns'
-import { ColorColumn } from './components/column'
 import SizeClient from './components/client'
+import { ColorColumn } from './components/column'
 export default async function ColorPage({ 
   params 
 }: {

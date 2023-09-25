@@ -1,7 +1,7 @@
 import { isServerAuthed } from '@/lib/helpers'
 import { NextResponse } from 'next/server'
-import { getStoreByUserId } from '../../actions/store-actions'
-import { createSize, getManySizes } from '../../actions/sizes-actions'
+import { createSize, getManySizes } from '../../../actions/sizes-actions'
+import { getStoreByUserId } from '../../../actions/store-actions'
 
 export const POST = async (
     req: Request,

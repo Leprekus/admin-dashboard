@@ -1,4 +1,4 @@
-import { getSize } from '@/app/api/actions/sizes-actions'
+import { getSize } from '@/app/actions/sizes-actions'
 import SizeForm from './components/SizeForm'
 
 export default async function SizeFormPage({

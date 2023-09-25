@@ -1,8 +1,8 @@
 
-import { getManySizes } from '@/app/api/actions/sizes-actions'
+import { getManySizes } from '@/app/actions/sizes-actions'
 import { format } from 'date-fns'
-import { SizeColumn } from './components/column'
 import SizeClient from './components/client'
+import { SizeColumn } from './components/column'
 export default async function SizesPage({ 
   params 
 }: {

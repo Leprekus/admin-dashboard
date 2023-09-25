@@ -1,5 +1,5 @@
+import { getBillboard } from '@/app/actions/api/billboard-actions'
 import BillboardForm from './components/BillboardForm'
-import { getBillboard } from '@/app/api/actions/billboard-actions'
 
 export default async function BillboardFormPage({
     params,
