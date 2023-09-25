@@ -1,7 +1,7 @@
 import { isServerAuthed } from '@/lib/helpers'
 import { NextResponse } from 'next/server'
 import { createBillboard, getManyBillboards } from '../../../actions/api/billboard-actions'
-import { getStoreByUserId } from '../../../actions/store-actions'
+import { getStoreByUserId } from '@/app/actions/api/store-actions'
 
 export const POST = async (
     req: Request,

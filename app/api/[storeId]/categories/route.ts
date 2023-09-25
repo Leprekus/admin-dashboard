@@ -1,7 +1,7 @@
 import { isServerAuthed } from '@/lib/helpers'
 import { NextResponse } from 'next/server'
-import { createCategory, getManyCategories } from '../../../actions/categories-actions'
-import { getStoreByUserId } from '../../../actions/store-actions'
+import { createCategory, getManyCategories } from '@/app/actions/api/categories-actions'
+import { getStoreByUserId } from '@/app/actions/api/store-actions'
 
 export const POST = async (
     req: Request,

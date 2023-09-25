@@ -1,7 +1,7 @@
 import { isServerAuthed } from '@/lib/helpers'
 import { NextResponse } from 'next/server'
-import { createColor, getManyColors } from '../../../actions/color-actions'
-import { getStoreByUserId } from '../../../actions/store-actions'
+import { getStoreByUserId } from '@/app/actions/api/store-actions'
+import { createColor, getManyColors } from '@/app/actions/api/color-actions'
 
 export const POST = async (
     req: Request,

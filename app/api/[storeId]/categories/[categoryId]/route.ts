@@ -1,5 +1,5 @@
-import { deleteCategory, getCategory, updateCategory } from '@/app/actions/categories-actions';
-import { getStoreByUserId } from '@/app/actions/store-actions';
+import { deleteCategory, getCategory, updateCategory } from '@/app/actions/api/categories-actions';
+import { getStoreByUserId } from '@/app/actions/api/store-actions';
 import { isServerAuthed } from '@/lib/helpers';
 import { NextResponse } from 'next/server';
 
