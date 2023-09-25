@@ -1,5 +1,5 @@
-import { deleteColor, getColor, updateColor } from '@/app/actions/color-actions';
-import { getStoreByUserId } from '@/app/actions/store-actions';
+import { getColor, deleteColor, updateColor } from '@/app/actions/api/color-actions';
+import { getStoreByUserId } from '@/app/actions/api/store-actions';
 import { isServerAuthed } from '@/lib/helpers';
 import { NextResponse } from 'next/server';
 
