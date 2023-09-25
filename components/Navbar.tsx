@@ -3,6 +3,7 @@ import MainNav from './MainNav';
 import StoreSwitcher from './StoreSwitcher';
 import prismadb from '@/lib/prismadb';
 import { isAuthed } from '@/lib/helpers';
+import { ThemeToggle } from './theme-toggle';
 
 export default async function Navbar() {
 
@@ -19,6 +20,7 @@ export default async function Navbar() {
             <StoreSwitcher items={stores}/>
             <MainNav/>
             <div className='ml-auto flex items-center space-x-4'>
+                <ThemeToggle/>
                 <UserButton afterSignOutUrl='/'/>
             </div>
         </div>

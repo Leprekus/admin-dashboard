@@ -1,9 +1,9 @@
 'use client'
-import { useEffect, useState }  from 'react'
+import { useEffect, useState } from 'react'
 
 
 import StoreModal from '@/components/modals/StoreModal'
-import ToastProvider from './ToastProvider'
+import ToastProvider from './toast-provider'
 
 
 export default function ModalProvider() {
