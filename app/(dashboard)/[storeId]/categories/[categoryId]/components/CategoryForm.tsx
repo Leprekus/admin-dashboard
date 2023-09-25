@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod'
 import { useState } from 'react';
+import _ from 'lodash'
 import { 
     Form, 
     FormControl, 
@@ -182,7 +183,7 @@ export default function CategoryForm({ initialData, billboards }: CategoryFormPr
             </div>
             <Button 
                 disabled={ 
-                    form.getValues().name === initialData?.name ||
+                    _.isEqual(form.getValues(), initialData) ||
                     isLoading
                 } 
                 type='submit'>
