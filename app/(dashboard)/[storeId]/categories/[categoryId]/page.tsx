@@ -1,6 +1,6 @@
 import { getManyBillboards } from '@/app/actions/api/billboard-actions';
-import { getCategory } from '@/app/actions/categories-actions';
 import CategoryForm from './components/CategoryForm';
+import { getCategory } from '@/app/actions/api/categories-actions';
 
 export default async function BillboardFormPage({
     params,

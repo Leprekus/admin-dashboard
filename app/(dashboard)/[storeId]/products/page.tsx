@@ -1,8 +1,8 @@
-import { getManyProducts } from '@/app/actions/product-actions';
 import { priceFormatter } from '@/lib/utils';
 import { format } from 'date-fns';
 import ProductClient from './components/client';
 import { ProductColumn } from './components/column';
+import { getManyProducts } from '@/app/actions/api/product-actions';
 export default async function ProductsPage({ 
   params 
 }: {

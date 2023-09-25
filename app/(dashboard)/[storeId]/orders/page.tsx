@@ -1,8 +1,8 @@
-import { getManyOrders } from '@/app/actions/order-actions';
 import { priceFormatter } from '@/lib/utils';
 import { format } from 'date-fns';
 import OrderClient from './components/client';
 import { OrderColumn } from './components/column';
+import { getManyOrders } from '@/app/actions/api/order-actions';
 export default async function OrdersPage({ 
   params 
 }: {
